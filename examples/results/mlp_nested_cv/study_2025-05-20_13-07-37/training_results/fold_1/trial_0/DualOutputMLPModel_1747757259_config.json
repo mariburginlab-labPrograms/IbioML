@@ -1,0 +1,18 @@
+{
+    "output_size": 1,
+    "num_epochs": 200,
+    "es_patience": 10,
+    "reg_type": null,
+    "lambda_reg": null,
+    "batch_size": 32,
+    "input_size": 550,
+    "scaler": "<ibioml.utils.data_scaler.DataScaler object at 0x10583b550>",
+    "hidden_size": 256,
+    "num_layers": 2,
+    "dropout": 0.10178955386192595,
+    "lr": 6.69482798545756e-08,
+    "results_dir": "results/mlp_nested_cv/study_2025-05-20_13-07-37/training_results/fold_1/trial_0",
+    "run_id": "DualOutputMLPModel_1747757259",
+    "model_name": "DualOutputMLPModel",
+    "r2_score": -156.6106250672451
+}

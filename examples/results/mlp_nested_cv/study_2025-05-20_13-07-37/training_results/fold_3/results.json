@@ -1,0 +1,13 @@
+{
+    "best_trial_number": 1,
+    "best_validation_r2_score": 0.6385766636088231,
+    "test_r2_score": 0.6240673239434611,
+    "additional_test_r2_scores": [
+        0.5653570576678215,
+        0.6827775902191007
+    ],
+    "additional_val_r2_scores": [
+        0.6247895778591945,
+        0.6523637493584518
+    ]
+}

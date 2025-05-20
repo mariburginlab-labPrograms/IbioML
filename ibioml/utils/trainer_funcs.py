@@ -1,8 +1,6 @@
 import torch
 from torch import nn
 from torch.nn import init
-import torch.optim as optim
-import numpy as np
 import copy
 
 #------------------- Initialization of Weights -------------------#

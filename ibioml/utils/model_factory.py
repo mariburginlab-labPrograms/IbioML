@@ -1,4 +1,4 @@
-from ibioml.utils.models.models import (
+from ibioml.models import (
     MLPModel, RNNModel, GRUModel, LSTMModel,
     DualOutputMLPModel, DualOutputRNNModel, DualOutputGRUModel, DualOutputLSTMModel
 )
