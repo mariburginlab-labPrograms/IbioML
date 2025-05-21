@@ -1,0 +1,1 @@
+recursive-exclude ibioml *.png *.jpg *.jpeg *.gif
