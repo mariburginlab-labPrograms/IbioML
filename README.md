@@ -1,6 +1,6 @@
 # IbioML
 
-Toolkit de Machine Learning para experimentos de neurodecodificación en IBIoBA.
+Toolkit de Machine Learning para experimentos de neurodecodificación en IBioBA.
 
 ## Instalación
 

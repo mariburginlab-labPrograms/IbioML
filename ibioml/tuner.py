@@ -6,11 +6,12 @@ import os
 import json
 import copy
 from ibioml.trainer import train_model
-from ibioml.utils.trainer_funcs import create_dataloaders
-from ibioml.utils.data_scaler import scale_data
+from ibioml.utils.model_factory import create_model_class
 from ibioml.utils.evaluators import create_evaluator, ModelEvaluator
 from ibioml.utils.splitters import TrialKFold, trial_train_test_split
+from ibioml.utils.tuner_funcs import *
 from sklearn.model_selection import KFold, train_test_split
+
 
 class Tuner:
     """
@@ -167,11 +168,21 @@ class Tuner:
         # Crea una copia de la configuración base
         trial_config = copy.deepcopy(base_config)
         
-        # Define hiperparámetros a optimizar
-        trial_config["hidden_size"] = trial.suggest_int("hidden_size", 128, 512, step=64)
-        trial_config["num_layers"] = trial.suggest_int("num_layers", 1, 3)
-        trial_config["dropout"] = trial.suggest_float("dropout", 0.0, 0.5)
-        trial_config["lr"] = trial.suggest_float("lr", 1e-8, 1e-3, log=True)
+        search_space = self.search_space or {
+            "hidden_size": {"type": "int", "low": 128, "high": 512, "step": 64},
+            "num_layers": {"type": "int", "low": 1, "high": 3},
+            "dropout": {"type": "float", "low": 0.0, "high": 0.5},
+            "lr": {"type": "float", "low": 1e-8, "high": 1e-3, "log": True},
+        }
+        for param, opts in search_space.items():
+            if opts["type"] == "int":
+                step = opts.get("step")
+                if step is not None:
+                    trial_config[param] = trial.suggest_int(param, opts["low"], opts["high"], step=step)
+                else:
+                    trial_config[param] = trial.suggest_int(param, opts["low"], opts["high"])
+            elif opts["type"] == "float":
+                trial_config[param] = trial.suggest_float(param, opts["low"], opts["high"], log=opts.get("log", False))
         
         # Maneja casos especiales para modelos RNN
         if hasattr(trial_config["model_class"], "__name__") and "RNN" in trial_config["model_class"].__name__:
@@ -295,75 +306,63 @@ class Tuner:
     def _print_cv_summary(self, results):
         """Imprime un resumen de los resultados de validación cruzada usando el evaluador."""
         print("\n===== Nested CV Summary =====")
-        self.evaluator.print_summary(results)
-
-
-# Keep original functions for backward compatibility
-def initialize_config(config, X_train, y_train, X_val, y_val, get_scaler=False):
-    """
-    Inicializa la configuración para el entrenamiento.
-    Maneja automáticamente modelos de salida única y dual.
-    """
-    # Detectar automáticamente la dimensión de salida
-    if y_train.ndim > 1 and y_train.shape[1] == 2:
-        y_dim = 2
-    else:
-        y_dim = 1
-    
-    # Escalar datos
-    X_train_scaled, y_train_scaled, X_val_scaled, y_val_scaled, scaler = scale_data(
-        X_train, y_train, X_val, y_val, return_scaler=True
-    )
-    
-    # Crear DataLoaders
-    train_loader, val_loader = create_dataloaders(
-        X_train_scaled, y_train_scaled, X_val_scaled, y_val_scaled, config["batch_size"]
-    )
-    
-    # Configurar modelo y otros parámetros
-    train_config = copy.deepcopy(config)
-    train_config["input_size"] = X_train.shape[X_train.ndim-1]
-    train_config["train_loader"] = train_loader
-    train_config["val_loader"] = val_loader
-    train_config["scaler"] = scaler  # Store scaler in config
-    
-    # Configuración específica según la dimensión de salida
-    if y_dim == 2:
-        train_config["output_size"] = 1  # Cada cabeza predice un valor
-    else:
-        train_config["y_scaler"] = scaler.target_scaler
-    
-    if get_scaler:
-        return train_config, scaler
-    else:
-        return train_config
-
-
-def make_serializable(obj):
-    """Convierte un objeto complejo a una forma serializable en JSON."""
-    if isinstance(obj, dict):
-        return {k: make_serializable(v) for k, v in obj.items() 
-                if not callable(v) and k not in ['device', 'model_class', 'train_loader', 'val_loader', 'y_scaler', 'scaler']}
-    elif isinstance(obj, list):
-        return [make_serializable(item) for item in obj]
-    elif not isinstance(obj, (str, int, float, bool, type(None))):
-        return str(obj)
-    else:
-        return obj
+        self.evaluator.print_summary(results)       
 
 
 def run_study(X, y, T, model_space, num_trials=5, outer_folds=5, inner_folds=5, save_path="results", search_alg="bayes", search_space=None, study_name=None):
     """
-    Validación cruzada anidada con Optuna para optimización de hiperparámetros.
-    Utiliza el evaluador proporcionado para la evaluación del modelo.
+    Ejecuta una validación cruzada anidada para la optimización de hiperparámetros utilizando Optuna.
+
+    Esta función realiza una búsqueda de hiperparámetros mediante Optuna, empleando validación cruzada anidada.
+    Permite la evaluación de modelos con salida simple o múltiple, y almacena los resultados y configuraciones óptimas.
+
+    Args:
+        X (np.ndarray): Matriz de características de entrada.
+        y (np.ndarray): Matriz o vector de etiquetas objetivo.
+        T (np.ndarray): Vector de marcadores de ensayo para la división de folds.
+        model_space (dict): Diccionario con la configuración base del modelo y parámetros fijos.
+        num_trials (int, optional): Número de pruebas de Optuna por fold interno. Por defecto 5.
+        outer_folds (int, optional): Número de folds para la validación cruzada externa. Por defecto 5.
+        inner_folds (int, optional): Número de folds para la validación cruzada interna. Por defecto 5.
+        save_path (str, optional): Ruta base donde guardar los resultados. Por defecto "results".
+        search_alg (str, optional): Algoritmo de búsqueda de Optuna ("bayes" o "grid"). Por defecto "bayes".
+        search_space (dict, optional): Espacio de búsqueda para GridSampler. Por defecto None.
+        study_name (str, optional): Nombre del estudio para la carpeta de resultados. Por defecto None.
+
+    Returns:
+        bool: True si la optimización se ejecutó correctamente.
+
+    Raises:
+        ValueError: Si el diccionario model_space no contiene exactamente las claves requeridas.
     """
-    # Inicializar el evaluador
-    evaluator = create_evaluator(y.shape[1], model_space["device"])
-    
-    # Crear instancia del afinador
-    tuner = Tuner(model_space, evaluator)
-    
-    # Configurar tuner
+    # Separa fijos y optimizables
+    fixed_space, auto_search_space = split_model_space(model_space)
+    # Usa el search_space explícito si lo pasan, sino el generado
+    search_space = search_space or auto_search_space
+
+    # Solo chequea los mínimos requeridos
+    required_keys = {
+        "model_class",
+        "output_size",
+        "device",
+        "num_epochs",
+        "es_patience",
+        "reg_type",
+        "lambda_reg",
+        "batch_size",
+    }
+    missing = required_keys - set(fixed_space.keys())
+    if missing:
+        raise ValueError(
+            f"model_space must contain at least these keys: {sorted(required_keys)}. "
+            f"Missing: {sorted(missing)}"
+        )
+
+    evaluator = create_evaluator(y.shape[1], fixed_space["device"])
+    model_class = create_model_class(fixed_space["model_class"], y.shape[1])
+    fixed_space["model_class"] = model_class
+
+    tuner = Tuner(fixed_space, evaluator)
     tuner.set_study_params(
         save_path=save_path,
         study_name=study_name,
@@ -373,7 +372,5 @@ def run_study(X, y, T, model_space, num_trials=5, outer_folds=5, inner_folds=5, 
         search_alg=search_alg,
         search_space=search_space
     )
-    
-    # Ejecutar optimización
     tuner.run(X, y, T)
     return True

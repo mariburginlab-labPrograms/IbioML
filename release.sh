@@ -3,11 +3,11 @@
 set -e  # si algo falla, se corta
 
 # Parámetros
-REPO="testpypi"  # o "testpypi" si querés probar
-VERSION=$1   # pasás la versión como argumento (ej: ./release.sh 0.1.4)
+VERSION=$1   # ejemplo: ./release.sh 0.1.2 pypi
+REPO=${2:-testpypi}  # si no se pasa, usa testpypi por defecto
 
 if [ -z "$VERSION" ]; then
-  echo "⚠️  Tenés que pasar una versión. Ej: ./release.sh 0.1.4"
+  echo "⚠️  Tenés que pasar una versión. Ej: ./release.sh 0.1.4 pypi"
   exit 1
 fi
 
@@ -32,11 +32,7 @@ python3 -m build
 
 # Upload
 echo "☁️  Subiendo a $REPO"
-if [ "$REPO" = "testpypi" ]; then
-  twine upload --repository testpypi dist/*
-else
-  twine upload dist/*
-fi
+twine upload --repository $REPO dist/*
 
 # (Opcional) Git
 echo "📤 Haciendo commit y push"
