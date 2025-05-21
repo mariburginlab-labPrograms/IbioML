@@ -5,11 +5,11 @@ import optuna
 import os
 import json
 import copy
-from .trainer import train_model
-from .utils.trainer_funcs import create_dataloaders
-from .utils.data_scaler import scale_data
-from .utils.evaluators import create_evaluator, ModelEvaluator
-from .utils.splitters import TrialKFold, trial_train_test_split
+from ibioml.trainer import train_model
+from ibioml.utils.trainer_funcs import create_dataloaders
+from ibioml.utils.data_scaler import scale_data
+from ibioml.utils.evaluators import create_evaluator, ModelEvaluator
+from ibioml.utils.splitters import TrialKFold, trial_train_test_split
 from sklearn.model_selection import KFold, train_test_split
 
 class Tuner:

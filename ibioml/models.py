@@ -1,7 +1,7 @@
 #%%
 import torch
 import torch.nn as nn
-from .utils.trainer_funcs import *
+from ibioml.utils.trainer_funcs import *
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # Usar GPU si está disponible, de lo contrario CPU
 

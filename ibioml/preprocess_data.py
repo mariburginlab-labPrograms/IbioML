@@ -6,7 +6,7 @@ from scipy import stats
 import pickle
 import time
 import sys
-from utils.preprocessing_funcs import get_spikes_with_history, create_trial_markers
+from ibioml.utils.preprocessing_funcs import get_spikes_with_history, create_trial_markers
 
 #%%
 def load_data(file_path):
@@ -220,14 +220,15 @@ def plot_low_performance(dPrime):
     plt.show()
     
 # %%
-preprocess_data(
-    file_path='datasets/DG_S19_bins200ms_completo.mat', 
-    file_name_to_save='S19/5_5_1/thresh2_5/bins200ms_preprocessed', 
-    bins_before=5, 
-    bins_after=5, 
-    bins_current=1, 
-    threshDPrime=2.5, 
-    firingMinimo=1000
-)
+# Example usage
+# preprocess_data(
+#     file_path='datasets/DG_S19_bins200ms_completo.mat', 
+#     file_name_to_save='S19/5_5_1/thresh2_5/bins200ms_preprocessed', 
+#     bins_before=5, 
+#     bins_after=5, 
+#     bins_current=1, 
+#     threshDPrime=2.5, 
+#     firingMinimo=1000
+# )
 
 
