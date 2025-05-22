@@ -80,7 +80,6 @@ def boxplot_test_r2_scores(r2_test_df: pd.DataFrame, save_path: str = None, y_li
     global palette
     global color_dict
     global medians
-    global models
     
     # Crear el gráfico
     plt.figure(figsize=(10, 6), dpi=200)
@@ -111,7 +110,7 @@ def boxplot_test_r2_scores(r2_test_df: pd.DataFrame, save_path: str = None, y_li
     ordered_medians = [medians[model] for model in r2_test_df['Modelo'].unique()]
 
     # Crear entradas personalizadas para la leyenda
-    custom_lines = [plt.Line2D([0], [0], color=palette[i], lw=4) for i in range(len(models))]
+    custom_lines = [plt.Line2D([0], [0], color=palette[i], lw=4) for i in range(len(r2_test_df['Modelo'].unique()))]
     legend_labels = [f'{model.upper()}: {median:.2f}' for model, median in zip(r2_test_df['Modelo'].unique(), ordered_medians)]
 
     # Agregar la leyenda personalizada
@@ -124,6 +123,10 @@ def boxplot_test_r2_scores(r2_test_df: pd.DataFrame, save_path: str = None, y_li
     plt.show()
 
 def boxplot_test_r2_scores_both_targets(r2_all_targets_df: pd.DataFrame, save_path: str = None, y_lim: list[float] = [0, 1]):
+    global palette
+    global color_dict
+    global medians
+    
     # Boxplot for all targets
     plt.figure(figsize=(10, 6), dpi=200)
 
@@ -196,8 +199,8 @@ def extract_predictions(results: dict[str, dict]) -> tuple[dict, dict]:
 
     for model in results.keys():
         # Extraer las predicciones y los valores verdaderos
-        predictions[model.upper()] = results[model]['predictions']
-        true_values[model.upper()] = results[model]['true_values']
+        predictions[model.upper()] = results[model]['predictions_per_fold']
+        true_values[model.upper()] = results[model]['true_values_per_fold']
 
     return predictions, true_values
 
@@ -209,14 +212,14 @@ def get_fold_closest_to_median(test_r2_scores, model):
     closest_fold = np.argmin(np.abs(np.array(r2_scores) - median_r2))
     return closest_fold
 
-def plot_predictions(predictions, true_values, test_r2_scores, fold_to_plot=None, closest_to='median', save_path=None, limit=None):
+def plot_predictions(predictions, true_values, test_r2_scores, fold_to_plot=None, closest_to='median', save_path=None, limit=(None, None)):
     global palette
     global color_dict
     
     # Crear subplots para cada modelo
     plt.figure(figsize=(10, 15), dpi=200)  # Ajusta el tamaño según necesites
 
-    for idx, model in enumerate(models):
+    for idx, model in enumerate(test_r2_scores.keys()):
         if fold_to_plot is None:
             # Obtener el fold más cercano a la mediana
             if closest_to == 'median':
@@ -225,15 +228,20 @@ def plot_predictions(predictions, true_values, test_r2_scores, fold_to_plot=None
                 fold_to_plot = np.argmax(np.array(test_r2_scores[model]) == np.mean(test_r2_scores[model]))
         
         # Obtener datos de test y predicciones para el fold más cercano a la mediana
-        y_test = true_values[model.upper()][fold_to_plot][:limit]  # Limitar a los primeros 1000 datos
-        y_pred = predictions[model.upper()][fold_to_plot][:limit]  # Limitar a los primeros 1000 datos
+        y_test = true_values[model.upper()][fold_to_plot][limit[0]:limit[1]]  
+        y_pred = predictions[model.upper()][fold_to_plot][limit[0]:limit[1]] 
         
         # Crear el subplot
         plt.subplot(4, 1, idx + 1)  # 4 filas, 1 columna, posición idx+1
         
-        # Crear el line plot
-        plt.plot(y_test, label='Data', color='black', linewidth=2)
-        plt.plot(y_pred, label='Predictions', alpha=1, linewidth=2, color=palette[idx])
+        if limit == (None, None):
+            # Crear el line plot
+            plt.plot(y_test, label='Data', color='black', linewidth=2)
+            plt.plot(y_pred, label='Predictions', alpha=1, linewidth=2, color=palette[idx])
+        else:
+            # Crear el line plot
+            plt.plot(np.arange(limit[0], limit[1]), y_test, label='Data', color='black', linewidth=2)
+            plt.plot(np.arange(limit[0], limit[1]), y_pred, label='Predictions', alpha=1, linewidth=2, color=palette[idx])
 
         plt.xlabel('Time (ms)', fontsize=14)
         plt.ylabel('Centered Position (cm)', fontsize=14)
