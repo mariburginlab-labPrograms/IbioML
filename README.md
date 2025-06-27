@@ -7,7 +7,7 @@ Toolkit de Machine Learning para experimentos de neurodecodificación en IBioBA.
 Clona este repositorio y asegúrate de tener un entorno con Python 3.8+ y las dependencias instaladas (puedes usar `requirements.txt` si está disponible):
 
 ```bash
-git clone https://github.com/tuusuario/IbioML.git
+git clone https://github.com/tuusuario/IBioML.git
 cd IbioML
 ```
 
