@@ -1,10 +1,10 @@
-site_name: IbioML
+site_name: IBioML
 site_description: Toolkit de Machine Learning para experimentos de neurodecodificación en IBioBA
 site_author: Juan Ignacio Ponce
-site_url: https://mariburginlab-labprograms.github.io/IbioML/
+site_url: https://mariburginlab-labprograms.github.io/IBioML/
 
-repo_name: mariburginlab-labPrograms/IbioML
-repo_url: https://github.com/mariburginlab-labPrograms/IbioML
+repo_name: mariburginlab-labPrograms/IBioML
+repo_url: https://github.com/mariburginlab-labPrograms/IBioML
 edit_uri: edit/main/docs/
 
 theme:
