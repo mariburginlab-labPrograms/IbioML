@@ -176,3 +176,16 @@ cython_debug/
 
 # new example results
 examples/results/
+
+# MkDocs build output
+site/
+
+# Documentation build artifacts
+docs/build/
+docs/.vitepress/cache/
+
+# Auto-generated API documentation
+docs/api/_autosummary/
+
+# Temporary documentation files
+*.tmp.md

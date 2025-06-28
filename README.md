@@ -1,4 +1,4 @@
-# IbioML
+# IBioML
 
 Toolkit de Machine Learning para experimentos de neurodecodificación en IBioBA.
 

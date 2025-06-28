@@ -3,7 +3,7 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 import matplotlib.patheffects as pe  # Añadir esta importación
-from utils.plot_styles import set_plotting_style, get_model_colors, get_strategy_colors
+from .plot_styles import set_plotting_style, get_model_colors, get_strategy_colors
 
 def enhanced_boxplot_test_r2_scores(r2_df, save_path=None, title="Comparación de R2 Scores entre Modelos"):
     """
