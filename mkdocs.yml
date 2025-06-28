@@ -1,0 +1,136 @@
+site_name: IbioML
+site_description: Toolkit de Machine Learning para experimentos de neurodecodificación en IBioBA
+site_author: Juan Ignacio Ponce
+site_url: https://mariburginlab-labprograms.github.io/IbioML/
+
+repo_name: mariburginlab-labPrograms/IbioML
+repo_url: https://github.com/mariburginlab-labPrograms/IbioML
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.highlight
+    - search.share
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search:
+      lang: 
+        - en
+        - es
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_signature_annotations: true
+            separate_signature: true
+            merge_init_into_class: true
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Inicio: index.md
+  - Guía de Usuario:
+    - Instalación: installation.md
+    - Preprocesamiento: preprocessing.md
+    - Experimentos: experiments.md
+    - Visualización: visualization.md
+  - API Reference:
+    - Modelos: api/models.md
+    - Preprocesamiento: api/preprocessing.md
+    - Entrenamiento: api/training.md
+    - Resultados: api/results.md
+  - Ejemplos:
+    - Tutorial Básico: examples/basic_tutorial.md
+    - Experimento Completo: examples/full_experiment.md
+  - Contribuir: contributing.md
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/mariburginlab-labPrograms/IbioML
+    - icon: fontawesome/solid/envelope
+      link: mailto:jiponce@ibioba-mpsp-conicet.gov.ar
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/ibioml/
+  analytics:
+    feedback:
+      title: ¿Fue útil esta página?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: Esta página fue útil
+          data: 1
+          note: >-
+            ¡Gracias por tu feedback!
+        - icon: material/emoticon-sad-outline
+          name: Esta página podría mejorarse
+          data: 0
+          note: >- 
+            Gracias por tu feedback! Ayúdanos a mejorar esta página.
+
+extra_css:
+  - stylesheets/extra.css
