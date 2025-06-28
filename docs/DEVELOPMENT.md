@@ -94,3 +94,4 @@ docs/
 ### Problemas con el tema Material
 - Verifica la versión de mkdocs-material
 - Revisa la sintaxis de las extensiones en mkdocs.yml
+# Documentation build test
