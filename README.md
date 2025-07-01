@@ -1,4 +1,4 @@
-# IbioML
+# IBioML
 
 Toolkit de Machine Learning para experimentos de neurodecodificación en IBioBA.
 
@@ -8,7 +8,7 @@ Clona este repositorio y asegúrate de tener un entorno con Python 3.8+ y las de
 
 ```bash
 git clone https://github.com/tuusuario/IBioML.git
-cd IbioML
+cd IBioML
 ```
 
 ## Preprocesamiento de datos `.mat`
@@ -133,10 +133,10 @@ Asegúrate de seleccionar la variante adecuada al cargar los datos para tus expe
 A continuación se muestra una imagen ilustrando la estructura de los datos para ambos casos:
 
 **Figura 1:** Ejemplo de estructura de datos *aplanada* (`flat`) utilizada para modelos no recurrentes (MLP). Cada muestra corresponde a un vector que concatena la información de todos los bins de la ventana temporal.
-![Estructura de datos para modelos no recurrentes](https://github.com/mariburginlab-labPrograms/IbioML/raw/main/docs/images/flat.jpg)
+![Estructura de datos para modelos no recurrentes](https://github.com/mariburginlab-labPrograms/IBioML/raw/main/docs/images/flat.jpg)
 
 **Figura 2:** Ejemplo de estructura de datos *tensorial* (`no flat`) utilizada para modelos recurrentes (RNN, LSTM, GRU). Cada muestra mantiene la dimensión temporal, permitiendo que el modelo procese la secuencia completa de bins.
-![Estructura de datos para modelos recurrentes](https://github.com/mariburginlab-labPrograms/IbioML/raw/main/docs/images/tensor.jpg)
+![Estructura de datos para modelos recurrentes](https://github.com/mariburginlab-labPrograms/IBioML/raw/main/docs/images/tensor.jpg)
 
 ## Visualización de resultados
 
