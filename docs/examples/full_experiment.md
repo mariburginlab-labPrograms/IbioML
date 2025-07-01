@@ -4,7 +4,7 @@ Este tutorial muestra cómo realizar un experimento completo de neurodecodificac
 
 ## Prerrequisitos
 
-Asegúrate de tener instalado IbioML y sus dependencias:
+Asegúrate de tener instalado IBioML y sus dependencias:
 
 ```bash
 pip install -e .

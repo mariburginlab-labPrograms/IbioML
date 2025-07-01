@@ -20,8 +20,8 @@ Para obtener la versión más reciente con las últimas características:
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tuusuario/IbioML.git
-cd IbioML
+git clone https://github.com/tuusuario/IBioML.git
+cd IBioML
 
 # Crear entorno virtual (recomendado)
 python -m venv venv
@@ -44,13 +44,13 @@ conda install numpy pandas scikit-learn matplotlib seaborn scipy
 # Instalar PyTorch (ajustar según tu sistema)
 conda install pytorch torchvision torchaudio -c pytorch
 
-# Instalar IbioML
+# Instalar IBioML
 pip install ibioml
 ```
 
 ## Dependencias
 
-IbioML requiere las siguientes librerías:
+IBioML requiere las siguientes librerías:
 
 ### Dependencias Principales
 
@@ -114,7 +114,7 @@ Ejecuta este script para verificar que todo funciona correctamente:
 import sys
 import ibioml
 
-print("✅ IbioML instalado correctamente!")
+print("✅ IBioML instalado correctamente!")
 print(f"Versión: {ibioml.__version__}")
 print(f"Python: {sys.version}")
 
@@ -142,7 +142,7 @@ except ImportError as e:
 
 ### Para Desarrollo
 
-Si planeas contribuir al desarrollo de IbioML:
+Si planeas contribuir al desarrollo de IBioML:
 
 ```bash
 # Instalar dependencias de desarrollo
@@ -198,7 +198,7 @@ pip install --user ibioml
 
 ## Próximos Pasos
 
-Una vez instalado IbioML exitosamente:
+Una vez instalado IBioML exitosamente:
 
 1. 📚 Lee la [guía de preprocesamiento](preprocessing.md)
 2. 🚀 Ejecuta tu [primer experimento](experiments.md)

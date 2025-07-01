@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script para gestionar la documentación de IbioML
+# Script para gestionar la documentación de IBioML
 # Uso: ./docs.sh [comando]
 
 set -e
@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 
 # Función para mostrar ayuda
 show_help() {
-    echo -e "${BLUE}IbioML Documentation Manager${NC}"
+    echo -e "${BLUE}IBioML Documentation Manager${NC}"
     echo ""
     echo "Uso: ./docs.sh [comando]"
     echo ""
@@ -60,7 +60,7 @@ deploy_docs() {
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         mkdocs gh-deploy
         echo -e "${GREEN}✅ Documentación desplegada correctamente${NC}"
-        echo -e "${BLUE}🌐 Disponible en: https://mariburginlab-labprograms.github.io/IbioML/${NC}"
+        echo -e "${BLUE}🌐 Disponible en: https://mariburginlab-labprograms.github.io/IBioML/${NC}"
     else
         echo -e "${YELLOW}❌ Despliegue cancelado${NC}"
     fi

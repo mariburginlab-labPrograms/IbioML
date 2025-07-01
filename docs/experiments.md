@@ -1,10 +1,10 @@
 # Configuración y Ejecución de Experimentos
 
-IbioML proporciona un sistema flexible y potente para ejecutar experimentos de neurodecodificación con optimización automática de hiperparámetros y validación cruzada anidada.
+IBioML proporciona un sistema flexible y potente para ejecutar experimentos de neurodecodificación con optimización automática de hiperparámetros y validación cruzada anidada.
 
 ## 🎯 Visión General
 
-Un experimento típico en IbioML incluye:
+Un experimento típico en IBioML incluye:
 
 1. **Carga de datos** preprocesados
 2. **Configuración del modelo** y hiperparámetros

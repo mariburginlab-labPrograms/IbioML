@@ -1,6 +1,6 @@
 # Tutorial Básico
 
-Este tutorial te guiará paso a paso para ejecutar tu primer experimento de neurodecodificación con IbioML.
+Este tutorial te guiará paso a paso para ejecutar tu primer experimento de neurodecodificación con IBioML.
 
 ## Preparación del Entorno
 
@@ -266,7 +266,7 @@ print(f"Mejora:          {final_results['best_r2_score_test'] - final_results_no
 
 ## Próximos Pasos
 
-¡Felicitaciones! Has completado tu primer experimento con IbioML. Ahora puedes:
+¡Felicitaciones! Has completado tu primer experimento con IBioML. Ahora puedes:
 
 ### 🧠 Explorar Diferentes Modelos
 ```python

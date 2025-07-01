@@ -112,7 +112,7 @@ extra:
     provider: mike
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/mariburginlab-labPrograms/IbioML
+      link: https://github.com/mariburginlab-labPrograms/IBioML
     - icon: fontawesome/solid/envelope
       link: mailto:jiponce@ibioba-mpsp-conicet.gov.ar
     - icon: fontawesome/brands/python

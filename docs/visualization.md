@@ -1,10 +1,10 @@
 # Visualización de Resultados
 
-IbioML incluye un sistema de visualización moderno y flexible para analizar los resultados de tus experimentos de neurodecodificación.
+IBioML incluye un sistema de visualización moderno y flexible para analizar los resultados de tus experimentos de neurodecodificación.
 
 ## 🎯 Visión General
 
-El sistema de visualización de IbioML se basa en dos componentes principales:
+El sistema de visualización de IBioML se basa en dos componentes principales:
 
 1. **`ExperimentResults`**: Gestión eficiente de datos de experimentos
 2. **`Visualizer`**: Generación de gráficos y análisis visual

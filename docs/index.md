@@ -1,4 +1,4 @@
-# IbioML
+# IBioML
 
 <div align="center">
   <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python">
@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.1.2-orange.svg" alt="Version">
 </div>
 
-**IbioML** es un toolkit de Machine Learning especializado para experimentos de neurodecodificación desarrollado en el IBioBA (Instituto de Investigación en Biomedicina de Buenos Aires).
+**IBioML** es un toolkit de Machine Learning especializado para experimentos de neurodecodificación desarrollado en el IBioBA (Instituto de Investigación en Biomedicina de Buenos Aires).
 
 ## ✨ Características Principales
 
@@ -86,7 +86,7 @@ run_study(
 
 ### Configuraciones de Datos
 
-IbioML genera automáticamente múltiples variantes de tus datos:
+IBioML genera automáticamente múltiples variantes de tus datos:
 
 === "Con Contexto"
     - `withCtxt_onlyPosition` - Solo información de posición
@@ -119,12 +119,12 @@ graph TD
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ve el archivo [LICENSE](https://github.com/mariburginlab-labPrograms/IbioML/blob/main/LICENSE) para más detalles.
+Este proyecto está bajo la Licencia MIT. Ve el archivo [LICENSE](https://github.com/mariburginlab-labPrograms/IBioML/blob/main/LICENSE) para más detalles.
 
 ## 📧 Contacto
 
 - **Email:** [jiponce@ibioba-mpsp-conicet.gov.ar](mailto:jiponce@ibioba-mpsp-conicet.gov.ar)
-- **GitHub:** [mariburginlab-labPrograms/IbioML](https://github.com/mariburginlab-labPrograms/IbioML)
+- **GitHub:** [mariburginlab-labPrograms/IBioML](https://github.com/mariburginlab-labPrograms/IBioML)
 
 ---
 

@@ -1,10 +1,10 @@
 # Preprocesamiento de Datos
 
-IbioML incluye un sistema robusto de preprocesamiento específicamente diseñado para transformar datos neuronales en formato `.mat` de MATLAB en estructuras optimizadas para machine learning.
+IBioML incluye un sistema robusto de preprocesamiento específicamente diseñado para transformar datos neuronales en formato `.mat` de MATLAB en estructuras optimizadas para machine learning.
 
 ## 🎯 Visión General
 
-El preprocesamiento en IbioML realiza las siguientes operaciones:
+El preprocesamiento en IBioML realiza las siguientes operaciones:
 
 1. **Carga de datos** desde archivos `.mat`
 2. **Incorporación de contexto** (información de recompensa)

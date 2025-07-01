@@ -1,5 +1,5 @@
 """
-IbioML - Toolkit de Machine Learning para experimentos de neurodecodificación.
+IBioML - Toolkit de Machine Learning para experimentos de neurodecodificación.
 
 Este paquete proporciona herramientas especializadas para el análisis de datos
 neuronales y la implementación de experimentos de neurodecodificación.

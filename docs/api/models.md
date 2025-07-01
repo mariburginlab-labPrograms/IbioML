@@ -1,6 +1,6 @@
 # API Reference - Modelos
 
-Esta sección documenta todos los modelos de machine learning disponibles en IbioML.
+Esta sección documenta todos los modelos de machine learning disponibles en IBioML.
 
 ## Modelos Base
 
