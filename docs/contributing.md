@@ -1,11 +1,11 @@
-# Contribuir a IbioML
+# Contribuir a IBioML
 
-¡Gracias por tu interés en contribuir a IbioML! Este proyecto se beneficia enormemente de las contribuciones de la comunidad.
+¡Gracias por tu interés en contribuir a IBioML! Este proyecto se beneficia enormemente de las contribuciones de la comunidad.
 
 ## 🚀 Formas de Contribuir
 
 ### 🐛 Reportar Bugs
-- Usa el [sistema de issues](https://github.com/tuusuario/IbioML/issues) de GitHub
+- Usa el [sistema de issues](https://github.com/tuusuario/IBioML/issues) de GitHub
 - Incluye información detallada sobre el error
 - Proporciona un ejemplo mínimo reproducible
 
@@ -31,8 +31,8 @@
 
 ```bash
 # Fork el repositorio en GitHub, luego:
-git clone https://github.com/tu-usuario/IbioML.git
-cd IbioML
+git clone https://github.com/tu-usuario/IBioML.git
+cd IBioML
 ```
 
 ### 2. Configurar Entorno Virtual
@@ -62,7 +62,7 @@ pre-commit install
 
 ### Estilo de Código
 
-IbioML sigue las convenciones de Python (PEP 8) con algunas extensiones:
+IBioML sigue las convenciones de Python (PEP 8) con algunas extensiones:
 
 ```python
 # Usar type hints
@@ -393,8 +393,8 @@ ibioml/
 
 ## 📜 Licencia
 
-Al contribuir a IbioML, aceptas que tus contribuciones sean licenciadas bajo la misma licencia MIT del proyecto.
+Al contribuir a IBioML, aceptas que tus contribuciones sean licenciadas bajo la misma licencia MIT del proyecto.
 
 ---
 
-¡Gracias por contribuir a IbioML! 🚀
+¡Gracias por contribuir a IBioML! 🚀
